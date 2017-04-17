@@ -1,0 +1,12 @@
+<h2>All Trainers</h2>
+<nav>
+  <a href="./add/">Add or Remove a Trainer</a>
+  <a href="./remove"> Add or Remove a Pokemon</a>
+</nav>
+<% @trainers.each do |trainer|%>
+  <p class="trainer">
+    <a href="./trainers/<%= trainer.id %>"><%= trainer.name %></a>
+  </p>
+  <p> Level: <%= trainer.level %></p>
+  <img src="<%= trainer.img_url %>">
+<% end %>
