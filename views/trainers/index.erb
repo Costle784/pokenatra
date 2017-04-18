@@ -9,4 +9,10 @@
   </p>
   <p> Level: <%= trainer.level %></p>
   <img src="<%= trainer.img_url %>">
+  <h2> Pokemon </h2>
+  <% trainer.pokemons.each do |pokemon|%>
+    <p class="pokemon">
+      <a href="./pokemons/<%= pokemon.id %>"><%= pokemon.name %></a>
+    </p>
+  <% end %>
 <% end %>

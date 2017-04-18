@@ -22,6 +22,7 @@ get '/trainers' do
 end
 # SHOW INDIVIDUAL TRAINER
 get '/trainers/:id' do
+  @pokemons = Pokemon.all
   @trainer = Trainer.find(params[:id])
   erb :"trainers/show"
 end
@@ -46,8 +47,18 @@ put '/trainers/:id' do
   redirect "/trainers/#{@trainer.id}"
 end
 # DELETE TRAINER BUTTON FROM SHOW VIEW
-delete '/trainers/:id/edit' do
+delete '/trainers/:id' do
   @trainer = Trainer.find(params[:id])
   @trainer.destroy
   redirect '/trainers'
+end
+# SHOW INDIVIDUAL POKEMON
+get '/pokemons/:id' do
+  @pokemon = Pokemon.find(params[:id])
+  erb :"pokemons/show"
+end
+# EDIT POKEMON
+get "/pokemons/:id/edit" do
+  @pokemon = Pokemon.find(params[:id])
+  erb :"pokemons/edit"
 end

@@ -11,7 +11,7 @@
 </form>
 
 <h3>Delete Trainer</h3>
-<form action="/trainers/<%= @trainer.id %>/edit" method="post">
+<form action="/trainers/<%= @trainer.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
   <input class="button-delete" type="submit" value="Delete!">
 </form>

@@ -5,5 +5,12 @@
   <img src="<%= @trainer.img_url %>">
   <p>Trainer Name: <%= @trainer.name %></p>
   <p>Trainer Level: <%= @trainer.level %></p>
-  <p>Trainer ID: <%= @trainer.id %></p>
 </div>
+<% @pokemons.each do |pokemon|%>
+  <%if pokemon.trainer_id == @trainer.id%>
+    <p class="pokemon">
+      <%= pokemon.name %>
+      <img src="<%= pokemon.img_url %>">
+    </p>
+  <% end %>
+<% end %>
