@@ -10,27 +10,44 @@ require_relative 'models/pokemon'
 require_relative 'models/trainer'
 
 
+# REDIRECT TO TRAINER INDEX
 get '/' do
+  redirect '/trainers'
+end
+# LIST OF TRAINERS - MAIN PAGE
+get '/trainers' do
+  @pokemons = Pokemon.all
   @trainers = Trainer.all
   erb :"trainers/index"
 end
-
-get '/add/' do
-  erb :"trainers/add"
-end
-
-post '/trainers' do
-  @trainer = Trainer.create(name: params[:name], id: params[:id], level: params[:level])
-  redirect "/"
-end
-
-delete '/trainers/:id' do
-  @trainer = Trainer.find(params[:id])
-  @trainer.destroy
-  redirect("/")
-end
-
+# SHOW INDIVIDUAL TRAINER
 get '/trainers/:id' do
   @trainer = Trainer.find(params[:id])
   erb :"trainers/show"
+end
+# GO TO 'ADD NEW TRAINER' PAGE
+get '/trainers/new/' do
+  erb :"trainers/new"
+end
+# BUTTON 'CREATE NEW TRAINER' ON NEW TRAINER VEIW
+post '/trainers' do
+  @trainer = Trainer.create(params[:trainer])
+  redirect "/trainers/#{@trainer.id}"
+end
+# GO TO 'EDIT' PAGE
+get "/trainers/:id/edit" do
+  @trainer = Trainer.find(params[:id])
+  erb :"trainers/edit"
+end
+#UPDATE BUTTON ON EDIT PAGE
+put '/trainers/:id' do
+  @trainer = Trainer.find(params[:id])
+  @trainer.update(params[:trainer])
+  redirect "/trainers/#{@trainer.id}"
+end
+# DELETE TRAINER BUTTON FROM SHOW VIEW
+delete '/trainers/:id/edit' do
+  @trainer = Trainer.find(params[:id])
+  @trainer.destroy
+  redirect '/trainers'
 end

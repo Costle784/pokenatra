@@ -1,7 +1,9 @@
 <a href='/'>Back to Trainers</a>
+<a href='/trainers/<%= @trainer.id %>/edit'>Edit This Trainer</a>
+
 <div class="trainer">
   <img src="<%= @trainer.img_url %>">
   <p>Trainer Name: <%= @trainer.name %></p>
-  <p>Trainer ID: <%= @trainer.id %></p>
   <p>Trainer Level: <%= @trainer.level %></p>
+  <p>Trainer ID: <%= @trainer.id %></p>
 </div>
